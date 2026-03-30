@@ -1,6 +1,6 @@
 # Hey, I'm Venkatesh 👋
 
-**Backend Engineer** at **Razorpay** — working in payments infrastructure where correctness isn't optional and failures have real financial consequences.
+**Solutions Backend Engineer** at **Razorpay** — working in payments infrastructure where correctness isn't optional and failures have real financial consequences.
 
 Day to day: debugging live transaction failures, stabilizing merchant integrations across Payout and Fund Account Validation APIs, and contributing to platform reliability at scale.
 
