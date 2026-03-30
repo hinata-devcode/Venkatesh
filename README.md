@@ -1,10 +1,12 @@
 # Hey, I'm Venkatesh 👋
 
-**Backend Engineer** focused on building reliable, production-grade systems in Java and Python.
+**Backend Engineer** at **Razorpay** — working in payments infrastructure where correctness isn't optional and failures have real financial consequences.
 
-Currently at **Razorpay**, working deep in the payments infrastructure space — debugging real-money transaction failures, stabilizing merchant integrations across Payout and Fund Account Validation APIs, and contributing to platform reliability at scale.
+Day to day: debugging live transaction failures, stabilizing merchant integrations across Payout and Fund Account Validation APIs, and contributing to platform reliability at scale.
 
-Previously at **Brane Enterprises**, where I built a multi-tenant workflow automation platform from the ground up using Java and Spring Boot — microservices, REST APIs, query optimization, the works.
+Before Razorpay, I built a multi-tenant workflow automation platform from scratch at **Brane Enterprises** — microservices, Spring Boot, REST APIs, query optimization across the full lifecycle.
+
+I gravitate toward problems where **async systems, failure recovery, and distributed consistency** actually matter.
 
 ---
 
@@ -17,10 +19,12 @@ Previously at **Brane Enterprises**, where I built a multi-tenant workflow autom
 ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 ![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)
 ![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white)
@@ -30,16 +34,22 @@ Previously at **Brane Enterprises**, where I built a multi-tenant workflow autom
 ## 🚀 Featured Projects
 
 ### 🏦 Financial Validation Engine
-> *Java · Spring Boot · MySQL · JWT · HMAC · Async Processing*
+> *Java · Spring Boot · MySQL · Redis · Resilience4j · JWT · HMAC · Docker · AWS*
 
-A fault-tolerant backend system that validates bank accounts and VPAs through external payment provider APIs — built to mirror how real fintech backends handle async flows and failure recovery.
+A fault-tolerant, **distributed-ready** backend system that validates bank accounts and VPAs through external payment provider APIs — built to mirror how real fintech backends handle async flows, distributed consistency, and failure recovery.
 
-**What's interesting about this one:**
-- Fully asynchronous validation pipeline using background workers — the API returns immediately, processing happens in the background
-- State-driven lifecycle (`INITIATED → PROCESSING → COMPLETED/FAILED`) that prevents duplicate processing and enables safe retries
-- Webhook ingestion secured with HMAC signature verification — only trusted provider callbacks are accepted
-- Scheduler-based reconciliation that auto-recovers validations when webhooks are delayed or never arrive
-- JWT-secured API layer
+I recently upgraded this significantly and would genuinely love for you to take a look 👇
+
+**What's under the hood:**
+- Fully **asynchronous** validation pipeline — API returns immediately, workers process in the background
+- **Multi-instance safe**: designed to run across 5+ Docker containers with no race conditions on state transitions or retries
+- **Distributed rate limiting** via Redis + Bucket4j — limits enforced uniformly across all instances
+- **Circuit breaker** (Resilience4j) protecting the system from cascading failures when providers degrade
+- **Idempotency controls** — safe retries with no duplicate processing, critical for financial correctness
+- State-driven lifecycle (`INITIATED → PROCESSING → COMPLETED/FAILED`) preventing inconsistent updates
+- Webhook ingestion secured with **HMAC signature verification**
+- Scheduler-based **reconciliation** that auto-recovers validations when webhooks are delayed or never arrive
+- Fully containerized with Docker Compose, deployed on AWS EC2
 
 **This project directly mirrors the Fund Account Validation system I work with at Razorpay — built to understand it from the inside out.**
 
@@ -62,11 +72,11 @@ A multi-tenant, enterprise-grade Retrieval-Augmented Generation backend — buil
 
 ---
 
-## 📌 What I'm Focused On
+## 📌 What I'm Thinking About
 
-- Deepening my understanding of **distributed systems** — consistency, fault tolerance, and async patterns
-- Exploring **system design** at scale — how real payment and platform systems are architected
-- Getting better at writing backend code that is not just functional but **observable, recoverable, and maintainable**
+- How **distributed systems** stay consistent under failure — not just in theory, but in the specific ways payment systems break in production
+- The gap between "it works" and **"it's observable, recoverable, and safe to operate"** — and how to close it through better architecture choices
+- How large-scale platforms like Razorpay's Payouts handle correctness guarantees at volume
 
 ---
 
